@@ -15,3 +15,17 @@ const debounce = (fn, delay) => {
 }
 
 const callGetData = debounce(getData, 100);
+
+//implement throttling
+const throttle = (fn, limit) => {
+    let flag = true;
+    return function(){
+        if(flag){
+            fn.apply(this, null);
+            flag = false;
+            setTimeout(() => {flag = true}, limit)
+        }
+    }
+}
+
+const callGetDataThrottling = throttle(getData, 900);
